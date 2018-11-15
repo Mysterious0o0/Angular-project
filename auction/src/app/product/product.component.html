@@ -1,0 +1,16 @@
+<div *ngFor="let product of products" class="col-md-4 col-sm-4 col-lg-4">
+  <!--*ngFor=let product of products 类似于for循环for product in products-->
+  <div  class="thumbnail">
+    <!--[src]="imgUrl"属性绑定，用于前后交互-->
+    <img [src]="imgUrl">
+    <div class="caption">
+      <h4 class="pull-right">{{product.price}}元</h4>
+      <h4><a>{{product.title}}</a></h4>
+      <p>{{product.desc}}</p>
+    </div>
+    <div>
+      <!--[rating]="product.rating"通过数据绑定将父组件的数据传到子组件传到app-stars组件的后台ts文件中-->
+      <app-stars [rating]="product.rating"></app-stars>
+    </div>
+  </div>
+</div>
