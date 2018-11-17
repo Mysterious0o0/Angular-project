@@ -1,0 +1,32 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<!--必须要用/开头，导航到根路由，即app-routing.module.ts配置的路由-->
+<!--使用routerLink时注意参数是个数组，方便后期携带参数到后台调用-->
+<a [routerLink]="['/']">主页</a>
+<!--<a [routerLink]="['/product']">商品详情</a>-->
+
+<!--传参方式1-->
+<!--[routerLink]="['/product']" [queryParams]="{id: 1}"就携带一个id=1的参数传到后台-->
+<!--然后在后台product.component.ts去接这个参数-->
+<!--对应的url： http://localhost:4200/product?id=1-->
+<!--<a [routerLink]="['/product']" [queryParams]="{id: 1}">商品详情</a>-->
+
+<!--传参方式2-->
+<!--routerLink是数组类型，第二个元素为携带的变量-->
+<!--对应的url：http://localhost:4200/product/1-->
+<a [routerLink]="['/product', 1]">商品详情</a>
+
+<!--(click)="toProductDetails()"事件绑定，
+即点击按钮后需要app.component.ts的toProductDetails的处理-->
+<input type="button" value="商品详情" (click)="toProductDetails()">
+
+<!--[{outlets: {aux: 'chat'}}]通过这个来指定辅助路由在后台对应应用的组件-->
+<!--<a [routerLink]="[{outlets: {aux: 'chat'}}]">开始聊天</a>-->
+<!--如果要让这个辅助路由和某个主路由绑定，即打开chat就跳转到home界面的话需要加primary来指定主路由是哪个-->
+<a [routerLink]="[{outlets: {primary: 'home', aux: 'chat'}}]">开始聊天</a>
+<a [routerLink]="[{outlets: {aux: null}}]">结束聊天</a>
+
+<!--<router-outlet></router-outlet>的作用是显示routerLink携带的内容在什么位置显示-->
+<!--实际上就是规定显示位置的作用-->
+<router-outlet></router-outlet>
+<!--通过name定义作为这个模板的辅助路由-->
+<router-outlet name="aux"></router-outlet>
