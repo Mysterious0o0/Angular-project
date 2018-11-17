@@ -9,6 +9,15 @@ import { SearchComponent } from './search/search.component';
 import { CarouselComponent } from './carousel/carousel.component';
 import { ProductComponent } from './product/product.component';
 import { StarsComponent } from './stars/stars.component';
+import { ProductDatailComponent } from './product-datail/product-datail.component';
+import { HomeComponent } from './home/home.component';
+import {RouterModule, Routes} from "@angular/router";
+
+// 声明路由配置
+const routeConfig: Routes = [
+  {path: '', component: HomeComponent},
+  {path: 'product/:prodTitle', component: ProductDatailComponent},
+];
 
 @NgModule({
   declarations: [
@@ -18,11 +27,15 @@ import { StarsComponent } from './stars/stars.component';
     SearchComponent,
     CarouselComponent,
     ProductComponent,
-    StarsComponent
+    StarsComponent,
+    ProductDatailComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    // 注入路由配置，这是在主模块，在子模块的时候用forchild()声明注入
+    RouterModule.forRoot(routeConfig)
   ],
   providers: [],
   bootstrap: [AppComponent]
