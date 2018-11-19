@@ -12,11 +12,12 @@ import { StarsComponent } from './stars/stars.component';
 import { ProductDatailComponent } from './product-datail/product-datail.component';
 import { HomeComponent } from './home/home.component';
 import {RouterModule, Routes} from "@angular/router";
+import {ProductService} from "./shared/product.service";
 
 // 声明路由配置
 const routeConfig: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'product/:prodTitle', component: ProductDatailComponent},
+  {path: 'product/:productId', component: ProductDatailComponent},
 ];
 
 @NgModule({
@@ -37,7 +38,8 @@ const routeConfig: Routes = [
     // 注入路由配置，这是在主模块，在子模块的时候用forchild()声明注入
     RouterModule.forRoot(routeConfig)
   ],
-  providers: [],
+  // 依赖注入声明
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
