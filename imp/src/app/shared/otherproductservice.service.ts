@@ -6,7 +6,7 @@ import {LoggerService} from './logger.service';
   providedIn: 'root'
 })
 
-// 实现implements，这样就能实现ProductService内的相同方法
+// 用implements继承，这样就能实现ProductService内的相同方法
 export class OtherproductService implements ProductService {
 
   getProduct(): Product {
