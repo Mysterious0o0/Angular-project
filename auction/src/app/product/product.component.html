@@ -1,6 +1,15 @@
-<div *ngFor="let product of products" class="col-md-4 col-sm-4 col-lg-4">
-  <!--*ngFor=let product of products 类似于for循环for product in products-->
-  <div  class="thumbnail">
+<div class="row">
+  <div class="col-sm-12">
+    <!--添加一个输入框作为搜索框, 将formControl绑定titleFilter，
+    从而当titleFilter改变的时候会产生一个valuechanges流传入后台监控-->
+    <input class="form-control" placeholder="请输入商品名称" [formControl]="titleFilter">
+  </div>
+</div>
+
+<!--*ngFor=let product of products 类似于for循环for product in products-->
+<!--products | filter: 'title': keyword 对products进行过滤-->
+<div *ngFor="let product of products | filter: 'title': keyword" class="col-md-4 col-sm-4 col-lg-4">
+  <div class="thumbnail">
     <!--[src]="imgUrl"属性绑定，用于前后交互-->
     <img [src]="imgUrl">
     <div class="caption">

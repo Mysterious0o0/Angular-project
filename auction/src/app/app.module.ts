@@ -13,6 +13,8 @@ import { ProductDatailComponent } from './product-datail/product-datail.componen
 import { HomeComponent } from './home/home.component';
 import {RouterModule, Routes} from "@angular/router";
 import {ProductService} from "./shared/product.service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { FilterPipe } from './pipe/filter.pipe';
 
 // 声明路由配置
 const routeConfig: Routes = [
@@ -30,13 +32,18 @@ const routeConfig: Routes = [
     ProductComponent,
     StarsComponent,
     ProductDatailComponent,
-    HomeComponent
+    HomeComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     // 注入路由配置，这是在主模块，在子模块的时候用forchild()声明注入
-    RouterModule.forRoot(routeConfig)
+    RouterModule.forRoot(routeConfig),
+    // 引入响应式编程的模块
+    ReactiveFormsModule,
+    // 引入ReactiveFormsModule之后html的<form></form>标签会报错故引入FormsModule模块
+    FormsModule
   ],
   // 依赖注入声明
   providers: [ProductService],
