@@ -1,0 +1,55 @@
+<p>
+  bind works!
+</p>
+<!--事件绑定-->
+<!--<button (click)="doOnClick($event)">点我</button>-->
+<!--属性绑定-->
+<img [src]="imgUrl">
+<!--这两种方式都可以，插值表达式和属性绑定是一样的-->
+<img src="{{imgUrl}}">
+
+
+<!--<input value="Tom" (input)="doOnInput($event)">-->
+
+<!--对于html而言无法设置disabled来决定这个按钮是否被禁用，
+只要在button中出现了disabled这个botton就会被禁用，无论disabled为False还是true-->
+
+<button disabled>点我</button>
+
+<table>
+  <tr>
+    <!--由于td中没有dom的colspan属性即出现dom元素没有对应属性的情况，故控制台会报错-->
+    <!--<td colspan="{{1+1}}">慕课网</td>-->
+    <!--这时候用到html属性绑定，而html绑定需要在原有的属性(colspan)前加上attr作为html绑定-->
+    <!--[attr.colspan]="size"就是把size绑定到td的html的colspan属性-->
+    <td [attr.colspan]="size">慕课网</td>
+  </tr>
+</table>
+
+<!--原始状态-->
+<!--<div class="a b c">慕课网</div>-->
+<!--css绑定全替换-->
+<!--<div [class]="divClass">慕课网</div>-->
+
+<!--改变某一个样式-->
+<!--当对应的表达式为true时，anguler就会把绑定的样式添加到class里，反之则移除-->
+<!--<div class="a b" [class.c]="isBig">慕课网</div>-->
+
+
+<!--管理多个类名的样式,[ngClass]要求后面为k-V型的对象 -->
+<!--<div [ngClass]="divNgClass">慕课网</div>-->
+
+<!--样式绑定-->
+<!--<div [style.color]="isDev?'red':'blue'">慕课网</div>-->
+<!--类似于font-size这种有大小或者像素的单位差别时，.em就是他的单位，即在font-size后面加单位-->
+<!--<div [style.font-size.em]="isDev?3:1">慕课网</div>-->
+
+<!--管理多个类名的style，[ngstyle]也要求后面为k-V型的对象 -->
+<!--<div [ngStyle]="divNgStyle">慕课网</div>-->
+
+
+<!--双向绑定,先是[]后是()盒子里面装香蕉，ngModel为双向绑定的标志-->
+<!--<input [(ngModel)]="name">-->
+<!--比较繁琐的的双向绑定-->
+<!--<input [value]="name" (input)="doOnInput($event)">-->
+<!--{{name}}-->

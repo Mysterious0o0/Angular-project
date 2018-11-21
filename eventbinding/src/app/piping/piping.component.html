@@ -1,0 +1,18 @@
+<p>
+  管道Demo
+</p>
+<!--| 管道操作符， 多个管道可以连起来作用-->
+<!--angular4 常用管道 https://blog.csdn.net/HaiJing1995/article/details/71404350-->
+<p>我的生日{{birthday | date:'yyyy-MM-dd HH:mm:ss' | uppercase}}</p>
+<!--number管道 格式：{最少整数位数}.{最少小数位数}-{最多小数位数}-->
+<p>圆周率{{pi | number: '1.1-4'}}</p>
+
+<!--不传值则交给管道后台处理-->
+<p>自定义管道{{size | multiple}}</p>
+<!--传值为3，管道后台处理-->
+<p>自定义管道{{size | multiple: 3}}</p>
+
+
+<a href="https://www.cnblogs.com/leiting/p/8880641.html">Angular4 自带常用管道1</a>
+<p></p>
+<a href="https://blog.csdn.net/sky_sunshine_x/article/details/82840168">Angular4 自带常用管道2</a>

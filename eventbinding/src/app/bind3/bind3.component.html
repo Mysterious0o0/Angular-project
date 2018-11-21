@@ -1,0 +1,7 @@
+<p>
+  响应式编程Demo
+</p>
+<!--formControl是ng指令-->
+<!--当前input标签页面的formControl是后台searchInput的属性，通过这个属性，到input值改变时
+后面的searchInput会发射一个valuechanges事件， 我们就需要在后台订阅这个事件-->
+<input [formControl]="searchInput">
