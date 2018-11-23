@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <h2>我是子组件</h2>
+  <div>这个div定义在子组件中</div>
+  <!--ng-content Angular提供的投影标签，将父组件投影到子组件的投影点-->
+  <!--select=".header" 在固定区域引入父组件的指定标签-->
+  <ng-content select=".header"></ng-content>
+  <div>内容区域</div>
+  <ng-content select=".footer"></ng-content>
+</div>
+<!--
+一个组件可以在其模板中声明多个ng-content标签
+假设子组件的部分是由三部分组成的，页头，页脚和内容区。
+页头和页脚由父组件投影进来，内容区自己定义
+-->

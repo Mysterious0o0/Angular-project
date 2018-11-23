@@ -1,0 +1,72 @@
+<!--<div>我是父组件</div>-->
+<!--<div>-->
+  <!--[(ngModel)]="stock"双向绑定，输入框会改变stock的值-->
+  <!--<input type="text" placeholder="股票代码" [(ngModel)]="stock">-->
+  <!--展示子组件的内容，父组件的stock属性通过输入属性传递给子组件的stockCode-->
+  <!--<app-order [stockCode]="stock" [amount]="100"></app-order>-->
+<!--属性绑定是单向的，即子组件改变不影响父组件的值-->
+<!--</div>-->
+
+<!--事件绑定(lastPrice)="priceQuoteHandler($event)"-->
+<!--默认情况下，自定义属性的名字和输出属性的名字是一样的，都是lastPrice，
+如果要用另外一个名字发射事件，只要指定output装饰器属性就可以了，
+比如把@Output改成@Output('priceChange')，priceChange就是需要捕获的那个事件的名字，
+之后再在html把lastPrice改成priceChange就行-->
+<!--<app-price-quote (lastPrice)="priceQuoteHandler($event)"></app-price-quote>-->
+<!--<div>-->
+  <!--这是在报价组件外部，-->
+  <!--<p></p>-->
+  <!--股票代码是{{priceQuote.stockCode}}-->
+  <!--<p></p>-->
+  <!--股票价格是{{priceQuote.lastPrice | number: '2.2-4'}}-->
+<!--</div>-->
+
+<!--<app-price-quote (buy)="buyHandle($event)"></app-price-quote>-->
+<!--拿到报价组件传出的购买事件之后，需要把股票信息传递给下单组件，这里就是和中间人做的事情了-->
+<!--<app-order [priceQuote]="priceQuote"></app-order>-->
+<!--<app-life [name]="title"></app-life>-->
+
+<!--<div class="parent">-->
+  <!--<h2>我是父组件</h2>-->
+  <!--父组件随时改变着两个值，这两个值变化时，传进的子组件的值也会变化-->
+  <!--传入子组件的值发生变化时，会触发这个ngOnChanges-->
+  <!--<div>-->
+    <!--问候语：<input type="text" [(ngModel)]="greeting">-->
+  <!--</div>-->
+  <!--<div>-->
+    <!--姓名：<input type="text" [(ngModel)]="user.name">-->
+  <!--</div>-->
+<!--</div>-->
+<!--<app-chat [greeting]="greeting" [user]="user"></app-chat>-->
+
+<!--在父组件的模板上调用子组件的方法-->
+<!--<app-child #child1></app-child>-->
+<!--<app-child #child2></app-child>-->
+<!--<button (click)="child2.greeting('Helen')">调用child2的greeting方法</button>-->
+<!--测试视图组合好后改变视图的某个属性会产生什么影响-->
+<!--<p>{{massage}}</p>-->
+
+
+<!--投影，将父组件的内容投影在子组件中-->
+
+<!--<div class="wrapper">-->
+  <!--<h2>我是父组件</h2>-->
+  <!--<div>这个是div定义在父组件中</div>-->
+  <!--<app-child2>-->
+    <!--<div class="header">这是页头，父组件投影到子组件的,title是{{title}}</div>-->
+    <!--&lt;!&ndash;这个会投影到子组件的ng-content中。父组件模板中插值表达式只能绑定父组件的属性&ndash;&gt;-->
+    <!--<div class="footer">这是页脚，父组件投影到子组件的</div>-->
+  <!--</app-child2>-->
+<!--</div>-->
+<!--<div [innerHTML]="divContent"></div>&lt;!&ndash;Angular还可以用属性绑定的形式很方便的插入一段HTML。&ndash;&gt;-->
+
+
+<!--最后的几个钩子-->
+<!--<div>{{message}}</div>-->
+<!--<app-child4></app-child4>-->
+
+<!--最后一个钩子 ngOnDestroy-->
+<a [routerLink]="['/']">child4</a>
+<p></p>
+<a [routerLink]="['/child6']">child6</a>
+<router-outlet></router-outlet>
