@@ -15,14 +15,11 @@ export class FilterPipe implements PipeTransform {
       item => {
         // 拿到商品的值fieldValue
         let fieldValue = item[filterField];
-        // fieldValue.indexOf(keyword)中的indexOf是指fieldValue包含keyword这个字段的1个数
+        // fieldValue.indexOf(keyword)中的indexOf是指fieldValue包含keyword这个字段的个数
         // 如果>0则返回true，则页面就进行过滤，
         return fieldValue.indexOf(keyword) >= 0;
       }
     )
-
-
-
     return null;
   }
 

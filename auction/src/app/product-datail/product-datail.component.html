@@ -1,3 +1,4 @@
+<!--商品信息-->
 <div class="thumbnail">
   <img src="http://placehold.it/820x230">
   <div>
@@ -8,12 +9,33 @@
   <div>
     <p class="pull-right">评论人数：{{comments.length}}人</p>
     <p>
-      <app-stars [rating]="product.rating"></app-stars>
+      <app-stars [rating]="product.rating "></app-stars>
     </p>
   </div>
 </div>
 
+<!--评论区-->
 <div class="well">
+  <!--用户评论区-->
+  <!--增加一个按键让评论区隐藏-->
+  <div>
+    <button class="btn btn-success" (click)="isCommentHidden = !isCommentHidden">发表评论</button>
+  </div>
+  <!--[hidden]的值影响这个div的隐藏和显示状态，true隐藏-->
+  <div [hidden]="isCommentHidden">
+    <div><!--要双向绑定，所有的星星组件给父组件发射一个新的等级值-->
+      <!--将readonly置为false，星星就可以点了，将默认五个星星传入-->
+      <app-stars [readonly]="false" [(rating)]="newRating"></app-stars>
+    </div>
+    <div>
+      <textarea [(ngModel)]="newComment"></textarea>
+    </div>
+    <div>
+      <button class="btn" (click)="addComment()">提交</button>
+    </div>
+
+  </div>
+  <!--详细评论信息-->
   <div class="row" *ngFor="let comment of comments">
     <hr>
     <div class="col-md-12">
