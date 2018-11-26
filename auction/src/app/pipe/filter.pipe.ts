@@ -19,7 +19,7 @@ export class FilterPipe implements PipeTransform {
         // 如果>0则返回true，则页面就进行过滤，
         return fieldValue.indexOf(keyword) >= 0;
       }
-    )
+    );
     return null;
   }
 

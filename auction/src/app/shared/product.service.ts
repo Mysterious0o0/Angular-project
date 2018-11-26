@@ -42,6 +42,11 @@ export class ProductService {
     // filter过滤条件
     return this.comments.filter((comment: Comment) => comment.productId == id);
   }
+
+  // 返回产品的种类信息
+  getAllCategories(): string[] {
+    return ["电子商品", "硬件商品", "图书", "音频", "家具商品", "厨房商品", "配件商品"]
+  }
 }
 
 // 定义商品信息
