@@ -1,0 +1,14 @@
+<!--可以被模板本地变量引用，以便在模板中访问ngForm实例。（#开头的变量等于ngForm，拿到了ngForm创建的对象了）
+声明了myForm模板变量，通过它访问我们的ngForm对象的属性。value属性保存着表单里面所有字段的值。-->
+<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm.value)">
+  <!--ngModelGroup="userInfo"就是将所包含的form表单在潜逃到一个名字是userInfio的对象中-->
+  <div ngModelGroup="userInfo">
+    <div>用户名:<input type="text" #username="ngModel" ngModel name="username"/></div>
+    <div>密码：<input type="text" ngModel name="password"/></div>
+  </div>
+  <div>确认密码:<input type="text" ngModel name="confirmpass"/></div>
+  <div>手机号：<input type="text" ngModel name="mobile"/></div>
+  <div><input type="submit" value="注册"/></div>
+</form>
+<div>{{myForm.value | json}}</div>
+<div>{{username.value}}</div>

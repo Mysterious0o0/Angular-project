@@ -1,0 +1,33 @@
+<!--由于ts定义的FormControl不在formGroup里面故，定义formControl也必须在formGroup外面定义，入下-->
+<!--但由于username不在formGroup里面，故onSubmit点击事件在控制台打印的信息，不会携带username的信息-->
+<div>username:<input [formControl]="username"></div>
+<!--表单处理方式变成了响应式， 并做一个提交的方法-->
+<!--由于formGroup是个属性，所以这边需要用[]来绑定-->
+<form [formGroup]="formModel" (submit)="onSubmit()">
+  <!--将formControl绑定一个input来作为显示，
+  但不能和上面的input一样用属性(formControl)来绑定而是要用属性名(formControlName)来绑定-->
+  <div>username2:<input formControlName="username2"></div>
+  <!--formGroupName的值是个字符串，所以用字符串绑定就可以-->
+  <div formGroupName="dateRange">
+    <!--formControlName也是字符串，前端的逻辑和ts一样，都是在嵌套进去-->
+    <!--formControlName必须用在formGroupName的指令范围内-->
+    起始日期<input type="date" formControlName="from">
+    截止日期<input type="date" formControlName="to">
+  </div>
+  <div>
+    <ul formArrayName="emails">
+      <!--由于formArray没有key，所以在html中一般与*ngFor联用，循环出来他的formControlName-->
+      <!--this.formModel.get('emails').controls的controls是代表email的集合-->
+      <!--需要当前循环下标-->
+      <li *ngFor="let e of this.formModel.get('emails').controls; let i = index">
+        <!--[formControlName]这里需要属性绑定的语法-->
+        <input type="text" [formControlName]="i">
+      </li>
+    </ul>
+    <!--点击按钮去增加一个输入块-->
+    <button type="button" (click)="addEmail()">增加Email</button>
+  </div>
+  <div>
+    <button type="submit">保存</button>
+  </div>
+</form>

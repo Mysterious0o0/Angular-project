@@ -1,0 +1,45 @@
+
+<!--<form [formGroup]="formModel" (submit)="onSubmit()">-->
+  <!--<div>用户名:<input type="text" formControlName="username"/></div>-->
+  <!--<div>手机号：<input type="text" formControlName="mobile"/></div>-->
+  <!--<div formGroupName="passwordGroup">-->
+    <!--<div>密码：<input type="text" formControlName="password"/></div>-->
+    <!--<div>确认密码:<input type="text" formControlName="confirmp"/></div>-->
+  <!--</div>-->
+  <!--<div><input type="submit" value="注册"/></div>-->
+<!--</form>-->
+
+<!--自定义error的错误信息-->
+<form [formGroup]="formModel" (submit)="onSubmit()">
+  <!--[class.hasError]="formModel.get('username').invalid && formModel.get('username').touched-->
+  <!--如果用户名输入错误，且用户名被聚焦过，就给他一个hasError样式，然后展示css上定义的.hasError样式-->
+  <div>用户名:<input [class.hasError]="formModel.get('username').invalid && formModel.get('username').touched"
+                  type="text" name="username" formControlName="username"/></div>
+  <!--控制整体的错误信息是显示还是不显示，用户信息通过或者用户名输入未框获取焦点-->
+  <div [hidden]="formModel.get('username').valid || formModel.get('username').untouched">
+    <!--hasError两个参数，一是校验的是否必填，校验器失败返回的对象的key的值，有值就是失败的
+      。二是检查的字段名字，hidden为true隐藏，所以取反。-->
+    <div [hidden]="!formModel.hasError('required','username')">用户名是必填项</div>
+    <div [hidden]="!formModel.hasError('minlength','username')">用户名最小长度为6</div>
+  </div>
+  <div>电话：<input type="text" name="mobile" formControlName="mobile"/></div>
+  <div [hidden]="formModel.get('mobile').valid || formModel.get('mobile').pristine">
+    <div [hidden]="!formModel.hasError('mobile','mobile')">请输入正确的手机号</div>
+  </div>
+  <div [hidden]="!formModel.get('mobile').pending">
+    正在校验手机号的合法性
+  </div>
+  <div formGroupName="passwordGroup">
+    <div>密码：<input type="text" name="password" formControlName="password"/></div>
+    <!--这里的hasError第二个参数是个数组，因为这个的passwordsGroup是一个二级属性，所以需要用数组来校验-->
+    <div [hidden]="!formModel.hasError('minlength',['passwordGroup','password'])">密码最小长度是6</div>
+    <div>确认密码:<input type="text" name="confirmp" formControlName="confirmp"/></div>
+    <!--{{formModel.getError('equal','passwordGroup')?.err}} 可以直接引用后台ts返回的错误信息-->
+    <div [hidden]="!formModel.hasError('equal','passwordGroup')">
+      {{formModel.getError('equal','passwordGroup')?.err}}
+    </div>
+  </div>
+  <div><input type="submit" value="提交"/></div>
+</form>
+
+<div>{{formModel.status}}</div><!--表单的状态-->
